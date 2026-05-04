@@ -15,15 +15,28 @@ export const translate = (word: string) => {
     method: 'GET',
   };
 
-  const req = https.request(options, (res) => {
-    res.on('data', (d) => {
-      console.log('feng', JSON.parse(d.toString()));
+  const request = https.request(options, (response) => {
+    const dataArr: Buffer[] = [];
+
+    response.on('data', (data) => {
+      dataArr.push(data);
+    });
+
+    response.on('end', () => {
+      const data = JSON.parse(Buffer.concat(dataArr).toString());
+      if (data?.responseData?.translatedText) {
+        console.log(data?.responseData?.translatedText);
+        process.exit(0);
+      } else {
+        console.error('发生错误');
+        process.exit(2);
+      }
     });
   });
 
-  req.on('error', (e) => {
+  request.on('error', (e) => {
     console.error(e);
   });
 
-  req.end();
+  request.end();
 };

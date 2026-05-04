@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "dev": "tsx watch src/cli.ts"
+    "dev": "tsx src/cli.ts"
   },
   "keywords": [],
   "author": "",
