@@ -3,9 +3,14 @@ import * as https from 'https';
 export const translate = (word: string) => {
   if (typeof word !== 'string') throw new Error('类型错误');
 
+  let langpair = 'en|zh';
+  if (!/a-zA-Z/.test(word[0])) {
+    langpair = 'zh|en';
+  }
+
   const query = new URLSearchParams({
     q: word,
-    langpair: 'en|zh',
+    langpair,
   }).toString();
 
   const options = {
