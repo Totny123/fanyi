@@ -1,7 +1,14 @@
 {
-  "name": "fanyi",
+  "name": "fanyi-feng",
   "version": "1.0.0",
   "description": "",
+  "bin": {
+    "fy": "dist/cli.js"
+  },
+  "main": "dist/main.js",
+  "files": [
+    "dist/**/*.js"
+  ],
   "scripts": {
     "dev": "tsx src/cli.ts"
   },
